@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnjoyGameUnion!! | VRChat発 ゲームを楽しむクリエイターグループ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        en: ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#6366f1', // Indigo-500
+                        secondary: '#ec4899', // Pink-500
+                        dark: '#111827',
+                        light: '#f9fafb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* スクロールアニメーション (初期状態) */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        /* スクロールアニメーション (表示状態) */
+        .fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* メンバーカードのホバーエフェクト（ぶいすぽっ！風の斜めクリップや画像拡大） */
+        .member-card {
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .member-card .img-container {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            transition: clip-path 0.4s ease;
+        }
+        .member-card:hover .img-container {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        .member-card img {
+            transition: transform 0.5s ease;
+        }
+        .member-card:hover img {
+            transform: scale(1.05);
+        }
+        .member-card .view-more {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        .member-card:hover .view-more {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 幾何学模様の背景アニメーション */
+        .bg-shapes {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+        }
+        .shape {
+            position: absolute;
+            background: rgba(99, 102, 241, 0.05);
+            animation: float 15s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(360deg); }
+        }
+
+        /* モーダルのアニメーション */
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: scale(0.9) translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* テキストのグラデーション */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #6366f1, #ec4899);
+        }
+
+        /* フィルターとメンバー非表示用 */
+        .hidden-card {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="text-gray-800 bg-light antialiased font-sans">
+
+    <!-- ナビゲーションバー -->
+    <header class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm transition-all duration-300" id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="text-2xl font-black font-en tracking-tighter text-dark flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad text-primary"></i>
+                    EnjoyGameUnion<span class="text-primary">!!</span>
+                </a>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-primary font-bold transition-colors">About</a>
+                    <a href="#news" class="text-gray-600 hover:text-primary font-bold transition-colors">News</a>
+                    <a href="#members" class="text-gray-600 hover:text-primary font-bold transition-colors">Members</a>
+                </nav>
+                <!-- スマホ用メニューボタン (今回はモック) -->
+                <button class="md:hidden text-gray-600 hover:text-primary">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+            <div class="bg-shapes">
+                <div class="shape rounded-full w-64 h-64 top-1/4 left-10 blur-xl"></div>
+                <div class="shape w-96 h-96 top-1/2 right-0 blur-xl bg-pink-500/5" style="animation-delay: -5s;"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+                <span class="block text-primary font-en font-bold tracking-widest mb-4 fade-in-up" style="transition-delay: 0.1s;">VRChat x GAMING GROUP</span>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-dark tracking-tight leading-tight mb-6 fade-in-up" style="transition-delay: 0.2s;">
+                    Play the <span class="text-gradient">Virtual</span>,<br>
+                    Enjoy the <span class="text-gradient">Game</span>!!
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 font-medium mb-10 fade-in-up" style="transition-delay: 0.3s;">
+                    仮想空間から、最高のゲーム体験とワクワクを。
+                </p>
+                <a href="#members" class="inline-block bg-dark text-white font-bold py-4 px-10 rounded-full hover:bg-primary transition-all duration-300 hover:shadow-lg hover:-translate-y-1 fade-in-up" style="transition-delay: 0.4s;">
+                    Meet the Members <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+            <!-- スクロールダウンインジケーター -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+                <span class="text-xs font-en font-bold text-gray-400 mb-2 tracking-widest">SCROLL</span>
+                <i class="fa-solid fa-chevron-down text-gray-300"></i>
+            </div>
+        </section>
+
+        <!-- About セクション -->
+        <section id="about" class="py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4 fade-in-up">About Us</h2>
+                <div class="w-16 h-1 bg-primary mx-auto mb-12 rounded-full fade-in-up"></div>
+
+                <h3 class="text-2xl font-bold mb-8 text-gray-800 fade-in-up">「VRChatで、もっとゲームを楽しみたい！」</h3>
+                
+                <div class="space-y-6 text-gray-600 text-lg leading-relaxed text-left md:text-center fade-in-up">
+                    <p>
+                        『EnjoyGameUnion!!』は、そんなシンプルで純粋な想いから発足したグループです。
+                    </p>
+                    <p>
+                        私たちは、VRChatというバーチャルの世界を拠点に活動しています。<br>
+                        顔も年齢も住んでいる場所も違うけれど、「ゲームが好き」という一つの共通点で繋がった仲間たち。
+                    </p>
+                    <p>
+                        FPSで熱く撃ち合ったり、パーティーゲームで腹を抱えて笑ったり、時には本気で大会を目指してみたり。<br>
+                        ジャンルや枠組みにとらわれず、様々なゲームを"全力で"楽しむことをモットーとしています。
+                    </p>
+                    <p class="font-bold text-dark mt-8 border-t border-gray-100 pt-8">
+                        私たちの活動を通じて、見ているあなたにも「楽しい！」を感染させたい。<br>
+                        バーチャルから始まる、新しいエンターテインメントをお届けします。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- News セクション -->
+        <section id="news" class="py-24 bg-gray-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 fade-in-up">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4">News</h2>
+                        <div class="w-16 h-1 bg-secondary rounded-full"></div>
+                    </div>
+                    <a href="#" class="text-gray-500 hover:text-secondary font-bold mt-4 md:mt-0 transition-colors">
+                        View All <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden fade-in-up" style="transition-delay: 0.1s;">
+                    <ul class="divide-y divide-gray-100">
+                        <!-- News Item 1 -->
+                        <li class="hover:bg-gray-50 transition-colors">
+                            <a href="#" class="flex flex-col md:flex-row md:items-center p-6 gap-4">
+                                <div class="flex items-center gap-4 md:w-48 shrink-0">
+                                    <span class="text-gray-400 font-en font-medium">2026.03.25</span>
+                                    <span class="bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full">活動報告</span>
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
+                                    VRChat内での「春の大型FPS大会」にメンバー3名が出場決定！
+                                </h4>
+                                <i class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
+                            </a>
+                        </li>
+                        <!-- News Item 2 -->
+                        <li class="hover:bg-gray-50 transition-colors">
+                            <a href="#" class="flex flex-col md:flex-row md:items-center p-6 gap-4">
+                                <div class="flex items-center gap-4 md:w-48 shrink-0">
+                                    <span class="text-gray-400 font-en font-medium">2026.03.20</span>
+                                    <span class="bg-pink-100 text-pink-600 text-xs font-bold px-3 py-1 rounded-full">動画更新</span>
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
+                                    【歌ってみた】グループ全員で「〇〇〇〇」歌唱動画を投稿しました！
+                                </h4>
+                                <i class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
+                            </a>
+                        </li>
+                        <!-- News Item 3 -->
+                        <li class="hover:bg-gray-50 transition-colors">
+                            <a href="#" class="flex flex-col md:flex-row md:items-center p-6 gap-4">
+                                <div class="flex items-center gap-4 md:w-48 shrink-0">
+                                    <span class="text-gray-400 font-en font-medium">2026.03.01</span>
+                                    <span class="bg-purple-100 text-purple-600 text-xs font-bold px-3 py-1 rounded-full">お知らせ</span>
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
+                                    EnjoyGameUnion!! 公式Webサイトをオープンしました！
+                                </h4>
+                                <i class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Members セクション -->
+        <section id="members" class="py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10 fade-in-up">
+                    <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4">Members</h2>
+                    <div class="w-16 h-1 bg-primary mx-auto rounded-full mb-4"></div>
+                    <p class="text-gray-500 font-medium">個性豊かなゲーム好きたちが集結。</p>
+                </div>
+
+                <!-- フィルターボタン -->
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12 fade-in-up">
+                    <button class="filter-btn active px-6 py-2 rounded-full border-2 border-dark bg-dark text-white font-bold text-sm transition-colors" data-category="all">All</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-200 text-gray-500 font-bold text-sm transition-colors hover:border-primary hover:text-primary" data-category="FPS">FPS</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-200 text-gray-500 font-bold text-sm transition-colors hover:border-primary hover:text-primary" data-category="格ゲー">格ゲー</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-200 text-gray-500 font-bold text-sm transition-colors hover:border-primary hover:text-primary" data-category="RPG">RPG</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-200 text-gray-500 font-bold text-sm transition-colors hover:border-primary hover:text-primary" data-category="パーティー">パーティー</button>
+                    <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-200 text-gray-500 font-bold text-sm transition-colors hover:border-primary hover:text-primary" data-category="総合">総合</button>
+                </div>
+
+                <!-- メンバーグリッド (列数を増やし、スマホでも2列表示) -->
+                <div id="members-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+                    <!-- JSにて描画されます -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-dark text-white py-12 border-t-4 border-primary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <a href="#" class="text-2xl font-black font-en tracking-tighter text-white flex items-center gap-2 mb-2">
+                    <i class="fa-solid fa-gamepad text-primary"></i>
+                    EnjoyGameUnion<span class="text-primary">!!</span>
+                </a>
+                <p class="text-gray-400 text-sm">VRChatから最高のゲーム体験を。</p>
+            </div>
+            
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary transition-colors">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-red-600 transition-colors">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+        <div class="text-center text-gray-500 text-sm mt-12">
+            &copy; 2026 EnjoyGameUnion!!. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- メンバー詳細モーダル -->
+    <div id="member-modal" class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center px-4 bg-dark/80 backdrop-blur-sm">
+        <div class="modal-content bg-white w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden relative flex flex-col md:flex-row max-h-[90vh]">
+            <!-- 閉じるボタン -->
+            <button id="modal-close" class="absolute top-4 right-4 w-10 h-10 bg-black/10 hover:bg-black/20 rounded-full flex items-center justify-center text-dark z-10 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <!-- モーダル左側: 画像 -->
+            <div id="modal-color-bg" class="md:w-2/5 relative bg-gray-100 flex items-end justify-center pt-10 px-4 shrink-0 overflow-hidden">
+                <div class="absolute inset-0 opacity-20" id="modal-bg-pattern" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+                <img id="modal-image" src="" alt="" class="relative z-10 max-w-full h-auto max-h-[60vh] object-contain drop-shadow-2xl translate-y-4">
+                <!-- 装飾文字 -->
+                <div id="modal-en-bg" class="absolute bottom-0 left-0 font-en font-black text-6xl md:text-8xl text-black/5 whitespace-nowrap -rotate-90 origin-bottom-left ml-4 mb-4"></div>
+            </div>
+
+            <!-- モーダル右側: 情報 -->
+            <div class="md:w-3/5 p-8 md:p-12 overflow-y-auto">
+                <div class="flex items-center gap-3 mb-2">
+                    <span id="modal-role" class="px-3 py-1 rounded-full text-xs font-bold border"></span>
+                </div>
+                <h3 id="modal-name" class="text-3xl md:text-4xl font-black text-dark mb-1"></h3>
+                <p id="modal-en" class="font-en text-gray-400 font-bold tracking-widest mb-6"></p>
+                
+                <div class="w-12 h-1 rounded-full mb-6" id="modal-divider"></div>
+
+                <div class="prose prose-gray max-w-none mb-8">
+                    <p id="modal-desc" class="text-gray-600 leading-relaxed font-medium"></p>
+                </div>
+
+                <div class="mb-8">
+                    <h4 class="text-sm font-bold text-gray-400 mb-3 uppercase tracking-wider">Favorite Games</h4>
+                    <div id="modal-games" class="flex flex-wrap gap-2">
+                        <!-- JSでバッジを生成 -->
+                    </div>
+                </div>
+
+                <!-- SNSリンク -->
+                <div class="flex gap-3 border-t border-gray-100 pt-6">
+                    <a id="modal-twitter" href="#" class="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors text-sm font-bold">
+                        <i class="fa-brands fa-x-twitter"></i> X (Twitter)
+                    </a>
+                    <a id="modal-youtube" href="#" class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-bold">
+                        <i class="fa-brands fa-youtube"></i> YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 処理 -->
+    <script>
+        // --- 1. メンバーデータ (ダミー) ---
+        // ベースとなる4人
+        const baseMembers = [
+            {
+                id: 1,
+                name: "アリス・ブルー",
+                en: "Alice Blue",
+                color: "#3b82f6", // Blue
+                category: "FPS",
+                role: "FPS / 突撃隊長",
+                desc: "「とりあえず突っ込むね！」が口癖の元気っ娘。VRChat内でも常に走り回っている。エイム力と反射神経はグループ随一だが、たまに味方ごと爆破するお茶目な一面も。最近はホラーゲームで絶叫する配信が人気。",
+                games: ["Apex Legends", "VALORANT", "VRChat"]
+            },
+            {
+                id: 2,
+                name: "クロノス・レッド",
+                en: "Chronos Red",
+                color: "#ef4444", // Red
+                category: "格ゲー",
+                role: "格ゲー / 頭脳派",
+                desc: "冷静沈着なグループのまとめ役…と思いきや、格闘ゲームになると人が変わったように熱くなる。フレーム単位の分析が得意で、初心者への教え方が非常に上手い。VRChatでは落ち着いたバーのマスター風アバターを愛用。",
+                games: ["Street Fighter 6", "Tekken 8", "麻雀"]
+            },
+            {
+                id: 3,
+                name: "シトラス・イエロー",
+                en: "Citrus Yellow",
+                color: "#eab308", // Yellow
+                category: "パーティー",
+                role: "パーティー / ムードメーカー",
+                desc: "周りを笑顔にする天才。勝敗よりも「どれだけ面白い展開を作れるか」に命を懸けている。マイクラでの建築センスが異常に高く、VRChat内でも自作のワールドを作ってメンバーを招待しては罠にはめている。",
+                games: ["Minecraft", "Among Us", "Party Animals"]
+            },
+            {
+                id: 4,
+                name: "ネオン・パープル",
+                en: "Neon Purple",
+                color: "#a855f7", // Purple
+                category: "RPG",
+                role: "RPG / 歌姫",
+                desc: "グループの癒やし枠でありながら、長時間のRPG耐久配信を平然とこなす体力お化け。歌うことが大好きで、グループの「歌ってみた」動画では中心となって活動。VRC内での音楽イベントにも頻繁に出演している。",
+                games: ["FF14", "Genshin Impact", "Rhythm Games"]
+            }
+        ];
+
+        // 20人に対応するため、残りの16人を自動生成
+        const membersData = [...baseMembers];
+        const dummyNames = ["エコー", "ノヴァ", "ルナ", "ソル", "テラ", "ゼファー", "アイリス", "シリウス", "ベガ", "アルタイル", "リブラ", "アリエス", "レオ", "アクア", "イグニス", "ウィンド"];
+        const dummyCategories = ["FPS", "格ゲー", "パーティー", "RPG", "総合"];
+        const dummyColors = ["#10b981", "#f97316", "#06b6d4", "#ec4899", "#8b5cf6", "#14b8a6", "#f43f5e"];
+
+        // 全員分の画像（プレースホルダーSVG）を生成
+        membersData.forEach(m => {
+            m.image = `data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Crect%20width%3D%22400%22%20height%3D%22500%22%20fill%3D%22%23${m.color.replace('#','')}%22%3E%3C%2Frect%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-size%3D%2230%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22bold%22%3EImage%3C%2Ftext%3E%3C%2Fsvg%3E`;
+        });
+
+        dummyNames.forEach((name, index) => {
+            const cat = dummyCategories[index % dummyCategories.length];
+            const color = dummyColors[index % dummyColors.length];
+            membersData.push({
+                id: index + 5,
+                name: name + "・" + ["グリーン","オレンジ","シアン","ピンク","バイオレット","ティール","ローズ"][index % 7],
+                en: "Member " + (index + 5),
+                color: color,
+                category: cat,
+                role: cat + " / 担当",
+                desc: "EnjoyGameUnion!!のメンバー。「" + cat + "」を中心に活動中。VRChatでの交流を大切にしながら、日々ゲームの腕を磨いている。配信や動画投稿にも意欲的。",
+                games: ["VRChat", "Favorite Game 1", "Favorite Game 2"],
+                image: `data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Crect%20width%3D%22400%22%20height%3D%22500%22%20fill%3D%22%23${color.replace('#','')}%22%3E%3C%2Frect%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%23ffffff%22%20font-size%3D%2230%22%20font-family%3D%22sans-serif%22%20font-weight%3D%22bold%22%3EImage%3C%2Ftext%3E%3C%2Fsvg%3E`
+            });
+        });
+
+        // --- 2. メンバーカードの動的生成 ---
+        const gridContainer = document.getElementById('members-grid');
+
+        function renderMembers() {
+            gridContainer.innerHTML = '';
+            membersData.forEach((member, index) => {
+                // 20人同時だと重いので、最初の10人だけ遅延アニメーションをつける
+                const delay = (index % 10) * 0.05; 
+                const cardHTML = `
+                    <div class="member-card group cursor-pointer fade-in-up relative bg-white rounded-2xl shadow-sm border border-gray-100 pb-4" data-category="${member.category}" style="transition-delay: ${delay}s;" onclick="openModal(${member.id})">
+                        <!-- 画像コンテナ (多人数向けに高さを抑える) -->
+                        <div class="img-container relative h-48 md:h-56 bg-gray-100 flex items-end justify-center pt-4 px-2" style="background-color: ${member.color}15;">
+                            <img src="${member.image}" alt="${member.name}" class="relative z-10 max-h-full object-contain drop-shadow-xl transform translate-y-2">
+                            
+                            <!-- ホバー時のオーバーレイテキスト -->
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center backdrop-blur-sm">
+                                <span class="view-more text-white font-en font-bold tracking-widest border-2 border-white px-3 py-1 text-xs md:text-sm md:px-4 md:py-2 rounded-full">
+                                    DETAIL
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- テキスト情報 -->
+                        <div class="px-4 pt-4 relative z-30 bg-white">
+                            <div class="text-[10px] md:text-xs font-en font-bold tracking-widest text-gray-400 mb-1 uppercase truncate">${member.en}</div>
+                            <h3 class="text-base md:text-lg font-black text-dark mb-1 truncate">${member.name}</h3>
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full shrink-0" style="background-color: ${member.color};"></div>
+                                <span class="text-[10px] md:text-xs font-medium text-gray-500 truncate">${member.role}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                gridContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        renderMembers();
+
+        // --- フィルター機能の制御 ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // ボタンのアクティブ状態を切り替え
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-dark', 'text-white', 'border-dark');
+                    b.classList.add('border-gray-200', 'text-gray-500');
+                });
+                btn.classList.add('active', 'bg-dark', 'text-white', 'border-dark');
+                btn.classList.remove('border-gray-200', 'text-gray-500');
+
+                // 絞り込み処理
+                const targetCategory = btn.getAttribute('data-category');
+                const cards = document.querySelectorAll('.member-card');
+                
+                cards.forEach(card => {
+                    if (targetCategory === 'all' || card.getAttribute('data-category') === targetCategory) {
+                        card.classList.remove('hidden-card');
+                    } else {
+                        card.classList.add('hidden-card');
+                    }
+                });
+            });
+        });
+
+        // --- 3. モーダル制御ロジック ---
+        const modal = document.getElementById('member-modal');
+        const modalCloseBtn = document.getElementById('modal-close');
+
+        function openModal(id) {
+            const member = membersData.find(m => m.id === id);
+            if (!member) return;
+
+            // データの流し込み
+            document.getElementById('modal-image').src = member.image;
+            document.getElementById('modal-name').textContent = member.name;
+            document.getElementById('modal-en').textContent = member.en;
+            document.getElementById('modal-role').textContent = member.role;
+            document.getElementById('modal-role').style.color = member.color;
+            document.getElementById('modal-role').style.borderColor = member.color;
+            document.getElementById('modal-desc').textContent = member.desc;
+            document.getElementById('modal-divider').style.backgroundColor = member.color;
+            document.getElementById('modal-color-bg').style.backgroundColor = `${member.color}15`;
+            document.getElementById('modal-en-bg').textContent = member.en.toUpperCase();
+
+            // ゲームタグの生成
+            const gamesContainer = document.getElementById('modal-games');
+            gamesContainer.innerHTML = ''; // リセット
+            member.games.forEach(game => {
+                const badge = document.createElement('span');
+                badge.className = 'px-3 py-1 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium';
+                badge.textContent = game;
+                gamesContainer.appendChild(badge);
+            });
+
+            // モーダル表示
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 背景スクロール防止
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal(); // 背景クリックで閉じる
+        });
+
+        // --- 4. スクロールアニメーション (Intersection Observer) ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // 10%見えたら発火
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // 一度表示したら監視を解除する場合（繰り返しアニメーションさせない場合）
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // .fade-in-up クラスを持つすべての要素を監視
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- 5. ヘッダーのスクロール制御 ---
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-md');
+                header.classList.replace('bg-white/80', 'bg-white/95');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.replace('bg-white/95', 'bg-white/80');
+            }
+        });
+    </script>
+</body>
+</html>
