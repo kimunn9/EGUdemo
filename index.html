@@ -53,6 +53,29 @@
       background: #94a3b8;
     }
 
+    /* ハンバーガーメニュー：サイドパネル */
+    .side-menu {
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .side-menu.active {
+      transform: translateX(0);
+    }
+
+    .menu-overlay {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
     /* ほんわか動くオーロラ背景 */
     .hero-gradient {
       background: linear-gradient(125deg, #ffffff 0%, #f5f3ff 40%, #fdf2f8 70%, #ffffff 100%);
@@ -113,36 +136,30 @@
 
     /* メンバーカードのホバーエフェクト */
     .member-card {
-      overflow: hidden;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    .member-card .img-container {
+    .member-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .member-img-wrap {
+      overflow: hidden;
       clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
       transition: clip-path 0.4s ease;
     }
 
-    .member-card:hover .img-container {
+    .member-card:hover .member-img-wrap {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 
     .member-card img {
-      transition: transform 0.5s ease;
+      transition: transform 0.6s scale;
     }
 
     .member-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .member-card .view-more {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.3s ease;
-    }
-
-    .member-card:hover .view-more {
-      opacity: 1;
-      transform: translateY(0);
+      transform: scale(1.1);
     }
 
     /* 幾何学模様の背景アニメーション */
@@ -247,6 +264,33 @@
       </div>
     </div>
   </header>
+
+  <!-- モバイル用サイドメニュー -->
+  <div id="menu-overlay" class="menu-overlay fixed inset-0 z-50"></div>
+  <aside id="side-menu"
+    class="side-menu fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white z-[60] shadow-2xl p-10 flex flex-col">
+    <div class="flex justify-end mb-12">
+      <button id="menu-close-btn" class="text-2xl text-slate-400 hover:text-primary transition-colors">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="flex flex-col space-y-8 font-black font-en text-2xl tracking-tighter">
+      <a href="#about" class="nav-link hover:text-primary transition-colors">About</a>
+      <a href="#projects" class="nav-link hover:text-primary transition-colors">Projects</a>
+      <a href="#members" class="nav-link hover:text-primary transition-colors">Members</a>
+    </nav>
+
+    <div class="mt-auto flex flex-col gap-6">
+      <div class="flex gap-6 text-xl">
+        <a href="https://x.com/EnjoyGameUnion" target="_blank" class="hover:text-primary"><i
+            class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank" class="hover:text-red-600"><i
+            class="fa-brands fa-youtube"></i></a>
+      </div>
+      <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest">© 2026 EnjoyGameUnion!!</p>
+    </div>
+  </aside>
 
   <main>
     <!-- ヒーローセクション -->
@@ -387,14 +431,10 @@
     <!-- Projects セクション -->
     <section id="projects" class="py-24 bg-white">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4 fade-in-up">Projects</h2>
-        <div class="w-16 h-1 bg-primary mx-auto mb-12 rounded-full fade-in-up"></div>
-
-
         <div class="flex flex-col md:flex-row justify-between items-end mb-12 fade-in-up">
           <div>
-            <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4">News</h2>
-            <div class="w-16 h-1 bg-secondary rounded-full"></div>
+            <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4">Projects</h2>
+            <div class="w-16 h-1 bg-primary rounded-full"></div>
           </div>
           <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank"
             class="text-gray-500 hover:text-secondary font-bold mt-4 md:mt-0 transition-colors">
@@ -466,15 +506,6 @@
             <p class="text-slate-500 text-sm leading-relaxed">コミュニティ全体を巻き込んだ大型の競技イベントを主催・運営。</p>
           </div>
         </div>
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-col justify-between items-end mt-4 mb-12 fade-in-up">
-            <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank"
-              class="text-gray-500 hover:text-secondary font-bold mt-4 md:mt-0 transition-colors">
-              VIEW ALL ON YOUTUBE <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
-            </a>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -515,7 +546,7 @@
   <footer class="bg-dark text-white py-12 border-t-4 border-primary">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
       <div>
-        <a href="#" class="text-2xl font-black font-en tracking-tighter text-white flex items-center gap-2 mb-2">
+        <a href="#" class="text-2xl font-black font-en tracking-tighter text-white">
           <i class="fa-solid fa-gamepad text-primary"></i>
           EnjoyGameUnion<span class="text-primary">!!</span>
         </a>
@@ -607,8 +638,35 @@
       {
         id: 1,
         name: "トッサノ",
+        vrc: "トッサノ",
         tag: ["主催"],
-        color: "#111111", // Black
+        color: "#111111",
+        desc: "EnjoyGameUnion!!の発起人。",
+        images: [
+          ""
+        ],
+        x: "",
+        youtube: "",
+      },
+      {
+        id: 2,
+        name: "ずんだゆき",
+        vrc: "ずんだゆき",
+        tag: ["運営・裏方"],
+        color: "#5ED464",
+        desc: "EnjoyGameUnion!!の発起人。",
+        images: [
+          ""
+        ],
+        x: "",
+        youtube: "",
+      },
+      {
+        id: 3,
+        name: "sava",
+        vrc: "sava_403",
+        tag: ["運営・裏方"],
+        color: "#7148B0",
         desc: "EnjoyGameUnion!!の発起人。",
         images: [
           ""
@@ -624,6 +682,12 @@
     function renderMembers() {
       gridContainer.innerHTML = '';
       membersData.forEach((member, index) => {
+        // imagesの自動生成
+        member.images = [
+          `data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22400%22%20height%3D%22500%22%20fill%3D%22${encodeURIComponent(member.color)}%22%20opacity%3D%220.1%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22${encodeURIComponent(member.color)}%22%20font-size%3D%2224%22%20text-anchor%3D%22middle%22%20font-weight%3D%22900%22%3EPHOTO%2001%3C%2Ftext%3E%3C%2Fsvg%3E`,
+          `data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22400%22%20height%3D%22500%22%20fill%3D%22${encodeURIComponent(member.color)}%22%20opacity%3D%220.2%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22${encodeURIComponent(member.color)}%22%20font-size%3D%2224%22%20text-anchor%3D%22middle%22%20font-weight%3D%22900%22%3EPHOTO%2002%3C%2Ftext%3E%3C%2Fsvg%3E`,
+          `data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%22400%22%20height%3D%22500%22%20fill%3D%22${encodeURIComponent(member.color)}%22%20opacity%3D%220.3%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22${encodeURIComponent(member.color)}%22%20font-size%3D%2224%22%20text-anchor%3D%22middle%22%20font-weight%3D%22900%22%3EPHOTO%2003%3C%2Ftext%3E%3C%2Fsvg%3E`,
+        ];
         // 20人同時だと重いので、最初の10人だけ遅延アニメーションをつける
         const delay = (index % 10) * 0.05;
         const cardHTML = `
@@ -633,7 +697,7 @@
                         <div class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[8px] font-black text-slate-800 shadow-sm uppercase tracking-tighter">${member.tag}</div>
                     </div>
                     <div class="px-2 pb-2">
-                        <div class="text-[8px] font-en font-black text-primary tracking-widest mb-1 uppercase">${member.name}</div>
+                        <div class="text-[8px] font-en font-black text-primary tracking-widest mb-1 uppercase">${member.vrc}</div>
                         <h4 class="text-sm font-black text-slate-900 truncate">${member.name}</h4>
                     </div>
                 </div>
@@ -750,6 +814,7 @@
         header.classList.replace('bg-white/95', 'bg-white/80');
       }
     });
+
   </script>
 </body>
 
