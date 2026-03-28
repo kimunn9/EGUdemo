@@ -10,7 +10,7 @@ const membersData = [
       ""
     ],
     x: "tossanovrc",
-    youtube: "",
+    youtube: "tossanogyotaku",
   },
   {
     id: 2,
@@ -27,8 +27,8 @@ const membersData = [
   },
   {
     id: 3,
-    name: "sava",
-    vrc: "sava_403",
+    name: "Sava",
+    vrc: "Sava_403",
     tag: ["運営・裏方"],
     color: "#7148B0",
     desc: "",
@@ -36,7 +36,7 @@ const membersData = [
       ""
     ],
     x: "Sava_403",
-    youtube: "",
+    youtube: "Sava_403",
   },
   {
     id: 4,
@@ -231,7 +231,7 @@ const membersData = [
       ""
     ],
     x: "komatsu_chiii",
-    youtube: "",
+    youtube: "komatsu-chiii",
   },
   {
     id: 19,
@@ -244,7 +244,7 @@ const membersData = [
       ""
     ],
     x: "t1o0k",
-    youtube: "",
+    youtube: "t1o0k-a",
   },
   {
     id: 20,

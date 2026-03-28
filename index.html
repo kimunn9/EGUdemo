@@ -285,7 +285,7 @@
     <div class="mt-auto flex flex-col gap-6">
       <div class="flex gap-6 text-xl">
         <a href="https://x.com/EnjoyGameUnion" target="_blank" class="hover:text-primary"><i
-            class="fa-brands fa-x-twitter"></i></a>
+            class="fa-brands fa-twitter"></i></a>
         <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank" class="hover:text-red-600"><i
             class="fa-brands fa-youtube"></i></a>
       </div>
@@ -432,13 +432,13 @@
     <!-- Projects セクション -->
     <section id="projects" class="py-24 bg-white">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 fade-in-up">
+        <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12">
           <div>
-            <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4">Projects</h2>
-            <div class="w-16 h-1 bg-primary mx-auto mb-12 md:mx-0 md:mb-0 rounded-full"></div>
+            <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4 fade-in-up">Projects</h2>
+            <div class="w-16 h-1 bg-primary mx-auto mb-12 md:mx-0 md:mb-0 rounded-full fade-in-up"></div>
           </div>
           <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank"
-            class="text-gray-500 hover:text-secondary font-bold mt-4 md:mt-0 transition-colors">
+            class="text-gray-500 hover:text-secondary font-bold mt-4 md:mt-0 transition-colors fade-in-up">
             VIEW ALL ON YOUTUBE <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
           </a>
         </div>
@@ -513,9 +513,9 @@
     <!-- Members セクション -->
     <section id="members" class="py-24 bg-gray-50 relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10 fade-in-up">
-          <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4">Members</h2>
-          <div class="w-16 h-1 bg-secondary mx-auto rounded-full mb-4"></div>
+        <div class="text-center mb-10">
+          <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4 fade-in-up">Members</h2>
+          <div class="w-16 h-1 bg-secondary mx-auto rounded-full mb-4 fade-in-up"></div>
 
           <!-- フィルター -->
           <div class="flex flex-wrap justify-center gap-3 mb-16 fade-in-up">
@@ -547,7 +547,7 @@
   <footer class="bg-dark text-white py-12 border-t-4 border-primary">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
       <div>
-        <a href="#" class="text-2xl font-black font-en tracking-tighter text-white">
+        <a href="" target="_blank" class="text-2xl font-black font-en tracking-tighter text-white">
           <i class="fa-solid fa-gamepad text-primary"></i>
           EnjoyGameUnion<span class="text-primary">!!</span>
         </a>
@@ -555,11 +555,11 @@
       </div>
 
       <div class="flex gap-4">
-        <a href="#"
+        <a href="https://x.com/EnjoyGameUnion" target="_blank"
           class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-primary transition-colors">
           <i class="fa-brands fa-twitter"></i>
         </a>
-        <a href="#"
+        <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank"
           class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-red-600 transition-colors">
           <i class="fa-brands fa-youtube"></i>
         </a>
@@ -617,10 +617,10 @@
           <div id="modal-desc" class="text-slate-600 leading-loose text-lg mb-10"></div>
         </div>
 
-        <div class="flex gap-4 pt-6 border-t border-slate-100">
+        <div id="modal-links" class="flex gap-4 pt-6 border-t border-slate-100">
           <a id="modal-x" href="#" target="_blank"
             class="px-6 py-3 bg-slate-900 text-white rounded-2xl font-bold flex items-center gap-3 hover:bg-primary transition-all">
-            <i class="fa-brands fa-x-twitter"></i> <span>X (Twitter)</span>
+            <i class="fa-brands fa-twitter"></i> <span>X (Twitter)</span>
           </a>
           <a id="modal-yt" href="#" target="_blank"
             class="px-6 py-3 bg-red-600 text-white rounded-2xl font-bold flex items-center gap-3 hover:bg-red-700 transition-all">
@@ -659,7 +659,7 @@
                         <div class="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-[8px] font-black text-slate-800 shadow-sm uppercase tracking-tighter">${member.tag}</div>
                     </div>
                     <div class="px-2 pb-2">
-                        <div class="text-[8px] font-en font-black text-primary tracking-widest mb-1 uppercase">${member.vrc}</div>
+                        <div class="text-[8px] font-en font-black text-primary tracking-widest mb-1">${member.vrc}</div>
                         <h4 class="text-sm font-black text-slate-900 truncate">${member.name}</h4>
                     </div>
                 </div>
@@ -729,6 +729,33 @@
       }
       setSlide(0);
       startAutoSlide();
+      // モーダル内リンク生成
+      const removeModalX = document.getElementById('modal-x');
+      if(removeModalX != null) removeModalX.remove();
+      const removeModalYt = document.getElementById('modal-yt');
+      if(removeModalYt != null) removeModalYt.remove();
+      const modalLinksContent = document.getElementById('modal-links');
+      if(member.x != ""){
+        const modalLinksX = `
+          <a id="modal-x" href="https://x.com/`
+          + member.x + `" target="_blank"
+            class="px-6 py-3 bg-slate-900 text-white rounded-2xl font-bold flex items-center gap-3 hover:bg-primary transition-all">
+            <i class="fa-brands fa-twitter"></i> <span>X (Twitter)</span>
+          </a>
+        `;
+        modalLinksContent.insertAdjacentHTML('beforeend', modalLinksX);
+      }
+      if(member.youtube != ""){
+        const modalLinksYt = `
+          <a id="modal-yt" href="https://www.youtube.com/@`
+          + member.youtube + `" target="_blank"
+            class="px-6 py-3 bg-red-600 text-white rounded-2xl font-bold flex items-center gap-3 hover:bg-red-700 transition-all">
+            <i class="fa-brands fa-youtube"></i> <span>YouTube</span>
+          </a>
+        `;
+        modalLinksContent.insertAdjacentHTML('beforeend', modalLinksYt);
+      }
+
       document.getElementById('member-modal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
