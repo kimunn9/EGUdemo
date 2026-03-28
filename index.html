@@ -293,7 +293,7 @@
     </div>
   </aside>
 
-  <main>
+  <main id="view-home">
     <!-- ヒーローセクション -->
     <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       <!-- ほんわかパーティクル -->
@@ -376,34 +376,34 @@
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden fade-in-up"
           style="transition-delay: 0.1s;">
-          <ul class="divide-y divide-gray-100">
+          <ul id="news-grid" class="divide-y divide-gray-100">
             <!-- News Item 1 -->
             <li class="hover:bg-gray-50 transition-colors">
-              <a href="#" class="flex flex-col md:flex-row md:items-center p-6 gap-4">
+              <div class="flex flex-col md:flex-row md:items-center p-6 gap-4" onclick="showNewsDetail(1)">
                 <div class="flex items-center gap-4 md:w-48 shrink-0">
                   <span class="text-gray-400 font-en font-medium">2026.03.25</span>
                   <span class="bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full">活動報告</span>
                 </div>
                 <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
-                  VRChat内での「春の大型FPS大会」にメンバー3名が出場決定！
+                  VRChat内「春の大型FPS大会」にメンバー3名が出場決定！
                 </h4>
                 <i
                   class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
-              </a>
+              </div>
             </li>
             <!-- News Item 2 -->
             <li class="hover:bg-gray-50 transition-colors">
-              <a href="#" class="flex flex-col md:flex-row md:items-center p-6 gap-4">
+              <div class="flex flex-col md:flex-row md:items-center p-6 gap-4" onclick="showNewsDetail(2)">
                 <div class="flex items-center gap-4 md:w-48 shrink-0">
                   <span class="text-gray-400 font-en font-medium">2026.03.20</span>
                   <span class="bg-pink-100 text-pink-600 text-xs font-bold px-3 py-1 rounded-full">動画更新</span>
                 </div>
                 <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
-                  【歌ってみた】グループ全員で「〇〇〇〇」歌唱動画を投稿しました！
+                  新曲「Enjoy Virtual Life」MV公開！
                 </h4>
                 <i
                   class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
-              </a>
+              </div>
             </li>
             <!-- News Item 3 -->
             <li class="hover:bg-gray-50 transition-colors">
@@ -543,6 +543,17 @@
     </section>
   </main>
 
+  <!-- News Detail View -->
+  <div id="view-news-detail" class="hidden py-40 bg-white min-h-screen">
+    <div class="max-w-4xl mx-auto px-6">
+      <button onclick="hideNewsDetail()"
+        class="group flex items-center gap-3 text-slate-400 hover:text-primary font-bold mb-12 transition-colors">
+        <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i> BACK TO HOME
+      </button>
+      <div id="news-content-area"></div>
+    </div>
+  </div>
+
   <!-- フッター -->
   <footer class="bg-dark text-white py-12 border-t-4 border-primary">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -635,6 +646,9 @@
 
   <script src="js/member.js">
     // --- 1. メンバーデータ読込 ---
+  </script>
+  <script src="js/news.js">
+    // --- 2. news読込 ---
   </script>
 
   <script>
@@ -731,24 +745,22 @@
       startAutoSlide();
       // モーダル内リンク生成
       const removeModalX = document.getElementById('modal-x');
-      if(removeModalX != null) removeModalX.remove();
+      if (removeModalX != null) removeModalX.remove();
       const removeModalYt = document.getElementById('modal-yt');
-      if(removeModalYt != null) removeModalYt.remove();
+      if (removeModalYt != null) removeModalYt.remove();
       const modalLinksContent = document.getElementById('modal-links');
-      if(member.x != ""){
+      if (member.x != "") {
         const modalLinksX = `
-          <a id="modal-x" href="https://x.com/`
-          + member.x + `" target="_blank"
+          <a id="modal-x" href="https://x.com/${member.x}" target="_blank"
             class="px-6 py-3 bg-slate-900 text-white rounded-2xl font-bold flex items-center gap-3 hover:bg-primary transition-all">
             <i class="fa-brands fa-twitter"></i> <span>X (Twitter)</span>
           </a>
         `;
         modalLinksContent.insertAdjacentHTML('beforeend', modalLinksX);
       }
-      if(member.youtube != ""){
+      if (member.youtube != "") {
         const modalLinksYt = `
-          <a id="modal-yt" href="https://www.youtube.com/@`
-          + member.youtube + `" target="_blank"
+          <a id="modal-yt" href="https://www.youtube.com/@${member.youtube}" target="_blank"
             class="px-6 py-3 bg-red-600 text-white rounded-2xl font-bold flex items-center gap-3 hover:bg-red-700 transition-all">
             <i class="fa-brands fa-youtube"></i> <span>YouTube</span>
           </a>
@@ -833,6 +845,66 @@
       });
 
     });
+
+    // --- 7. Newsハイライト ---
+    function setNewsHighlight() {
+      const newsContainer = document.getElementById('news-grid');
+      newsContainer.innerHTML = '';
+      const newsTotal = newsContent.length;
+      console.log(newsTotal);
+      for (let i = 0; i < 3; i++) {
+        const content = newsContent.find(m => m.id === newsTotal - i);
+        let contentHTML = `
+            <li class="hover:bg-gray-50 transition-colors">
+              <div class="flex flex-col md:flex-row md:items-center p-6 gap-4" onclick="showNewsDetail(${content.id})">
+                <div class="flex items-center gap-4 md:w-48 shrink-0">
+                  <span class="text-gray-400 font-en font-medium">${content.date}</span>`;
+        switch (content.tag){
+          case "お知らせ":
+            contentHTML += `<span class="bg-purple-100 text-purple-600 text-xs font-bold px-3 py-1 rounded-full">${content.tag}</span>`;
+            break;
+          case "活動報告":
+            contentHTML += `<span class="bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full">${content.tag}</span>`;
+            break;
+          case "動画更新":
+            contentHTML += `<span class="text-gray-400 text-xs font-bold px-3 py-1 rounded-full">${content.tag}</span>`;
+            break;
+          default: contentHTML += `<span class="bg-purple-100 text-purple-600 text-xs font-bold px-3 py-1 rounded-full">${content.tag}</span>`;
+        }
+        contentHTML += `</div>
+                <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
+                ${content.title}
+                </h4>
+                <i
+                  class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
+              </a>
+            </li>
+            `;
+        newsContainer.insertAdjacentHTML('beforeend', contentHTML);
+      }
+    }
+
+    setNewsHighlight();
+
+    // --- 8. News詳細 ---
+    function showNewsDetail(id) {
+      const data = newsContent.find(m => m.id === id);
+      document.getElementById('news-content-area').innerHTML = `
+                <span class="text-primary font-en font-bold text-sm tracking-widest uppercase">${data.tag}</span>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mt-4 mb-8 leading-tight">${data.title}</h1>
+                <div class="text-slate-400 font-en font-bold mb-16">${data.date}</div>
+                <div class="prose prose-xl prose-slate">${data.body}</div>
+            `;
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-news-detail').classList.remove('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function hideNewsDetail() {
+      document.getElementById('view-home').classList.remove('hidden');
+      document.getElementById('view-news-detail').classList.add('hidden');
+      document.getElementById('news').scrollIntoView();
+    }
   </script>
 </body>
 
