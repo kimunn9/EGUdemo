@@ -258,7 +258,7 @@
           <a href="#members" class="text-gray-600 hover:text-primary font-bold transition-colors">Members</a>
         </nav>
         <!-- スマホ用メニューボタン (今回はモック) -->
-        <button class="md:hidden text-gray-600 hover:text-primary">
+        <button id="menu-open-btn" class="md:hidden text-gray-600 hover:text-primary">
           <i class="fa-solid fa-bars text-2xl"></i>
         </button>
       </div>
@@ -277,6 +277,7 @@
 
     <nav class="flex flex-col space-y-8 font-black font-en text-2xl tracking-tighter">
       <a href="#about" class="nav-link hover:text-primary transition-colors">About</a>
+      <a href="#news" class="nav-link hover:text-primary transition-colors">News</a>
       <a href="#projects" class="nav-link hover:text-primary transition-colors">Projects</a>
       <a href="#members" class="nav-link hover:text-primary transition-colors">Members</a>
     </nav>
@@ -431,10 +432,10 @@
     <!-- Projects セクション -->
     <section id="projects" class="py-24 bg-white">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 fade-in-up">
+        <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 fade-in-up">
           <div>
             <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4">Projects</h2>
-            <div class="w-16 h-1 bg-primary rounded-full"></div>
+            <div class="w-16 h-1 bg-primary mx-auto mb-12 md:mx-0 md:mb-0 rounded-full"></div>
           </div>
           <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank"
             class="text-gray-500 hover:text-secondary font-bold mt-4 md:mt-0 transition-colors">
@@ -776,6 +777,35 @@
       }
     });
 
+    // --- 6. ハンバーガーメニュー ---
+    const sideMenu = document.getElementById('side-menu');
+    const overlay = document.getElementById('menu-overlay');
+
+    function toggleMenu(isOpen) {
+      if (isOpen) {
+        sideMenu.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        sideMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // イベント登録
+    document.addEventListener('DOMContentLoaded', () => {
+
+      document.getElementById('menu-open-btn').addEventListener('click', () => toggleMenu(true));
+      document.getElementById('menu-close-btn').addEventListener('click', () => toggleMenu(false));
+      overlay.addEventListener('click', () => toggleMenu(false));
+
+      // リンククリックで閉じる
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => toggleMenu(false));
+      });
+
+    });
   </script>
 </body>
 
