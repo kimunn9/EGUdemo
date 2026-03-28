@@ -631,51 +631,12 @@
   </div>
 
   <!-- JavaScript 処理 -->
-  <script>
-    // --- 1. メンバーデータ ---
-    // import membersData from "./js/mambers.js";
-    const membersData = [
-      {
-        id: 1,
-        name: "トッサノ",
-        vrc: "トッサノ",
-        tag: ["主催"],
-        color: "#111111",
-        desc: "EnjoyGameUnion!!の発起人。",
-        images: [
-          ""
-        ],
-        x: "",
-        youtube: "",
-      },
-      {
-        id: 2,
-        name: "ずんだゆき",
-        vrc: "ずんだゆき",
-        tag: ["運営・裏方"],
-        color: "#5ED464",
-        desc: "EnjoyGameUnion!!の発起人。",
-        images: [
-          ""
-        ],
-        x: "",
-        youtube: "",
-      },
-      {
-        id: 3,
-        name: "sava",
-        vrc: "sava_403",
-        tag: ["運営・裏方"],
-        color: "#7148B0",
-        desc: "EnjoyGameUnion!!の発起人。",
-        images: [
-          ""
-        ],
-        x: "",
-        youtube: "",
-      },
-    ];
 
+  <script src="js/member.js">
+    // --- 1. メンバーデータ読込 ---
+  </script>
+
+  <script>
     // --- 2. メンバーカードの動的生成 ---
     const gridContainer = document.getElementById('members-grid');
 
