@@ -377,54 +377,13 @@
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden fade-in-up"
           style="transition-delay: 0.1s;">
           <ul id="news-grid" class="divide-y divide-gray-100">
-            <!-- News Item 1 -->
-            <li class="hover:bg-gray-50 transition-colors">
-              <div class="flex flex-col md:flex-row md:items-center p-6 gap-4" onclick="showNewsDetail(1)">
-                <div class="flex items-center gap-4 md:w-48 shrink-0">
-                  <span class="text-gray-400 font-en font-medium">2026.03.25</span>
-                  <span class="bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full">活動報告</span>
-                </div>
-                <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
-                  VRChat内「春の大型FPS大会」にメンバー3名が出場決定！
-                </h4>
-                <i
-                  class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
-              </div>
-            </li>
-            <!-- News Item 2 -->
-            <li class="hover:bg-gray-50 transition-colors">
-              <div class="flex flex-col md:flex-row md:items-center p-6 gap-4" onclick="showNewsDetail(2)">
-                <div class="flex items-center gap-4 md:w-48 shrink-0">
-                  <span class="text-gray-400 font-en font-medium">2026.03.20</span>
-                  <span class="bg-pink-100 text-pink-600 text-xs font-bold px-3 py-1 rounded-full">動画更新</span>
-                </div>
-                <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
-                  新曲「Enjoy Virtual Life」MV公開！
-                </h4>
-                <i
-                  class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
-              </div>
-            </li>
-            <!-- News Item 3 -->
-            <li class="hover:bg-gray-50 transition-colors">
-              <a href="#" class="flex flex-col md:flex-row md:items-center p-6 gap-4">
-                <div class="flex items-center gap-4 md:w-48 shrink-0">
-                  <span class="text-gray-400 font-en font-medium">2026.03.01</span>
-                  <span class="bg-purple-100 text-purple-600 text-xs font-bold px-3 py-1 rounded-full">お知らせ</span>
-                </div>
-                <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
-                  EnjoyGameUnion!! 公式Webサイトをオープンしました！
-                </h4>
-                <i
-                  class="fa-solid fa-arrow-right text-gray-300 hidden md:block group-hover:text-primary transition-colors transform group-hover:translate-x-1"></i>
-              </a>
-            </li>
           </ul>
         </div>
         <div class="flex flex-col justify-between items-end mt-4 mb-12 fade-in-up">
-          <a href="#" class="text-gray-500 hover:text-secondary font-bold mt-4 md:mt-0 transition-colors">
+          <div class="text-gray-500 hover:text-secondary font-bold mt-4 md:mt-0 transition-colors"
+            onclick="MainToAll()">
             View All <i class="fa-solid fa-angle-right"></i>
-          </a>
+          </div>
         </div>
       </div>
     </section>
@@ -546,13 +505,29 @@
   <!-- News Detail View -->
   <div id="view-news-detail" class="hidden py-40 bg-white min-h-screen">
     <div class="max-w-4xl mx-auto px-6">
-      <button onclick="hideNewsDetail()"
-        class="group flex items-center gap-3 text-slate-400 hover:text-primary font-bold mb-12 transition-colors">
-        <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i> BACK TO HOME
-      </button>
+      <div id="news-back-btn"></div>
       <div id="news-content-area"></div>
     </div>
   </div>
+
+  <!-- News 全表示 -->
+  <section id="view-news-all" class="hidden py-24 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl md:text-5xl font-black font-en text-dark mb-4 fade-in-up">News</h2>
+      <div class="w-16 h-1 bg-secondary mx-auto mb-12 rounded-full fade-in-up"></div>
+      <button onclick="AllToMain()"
+        class="group flex items-center gap-3 text-slate-400 hover:text-primary font-bold mb-12 transition-colors">
+        <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i> BACK TO HOME
+      </button>
+    </div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden fade-in-up"
+        style="transition-delay: 0.1s;">
+        <ul id="news-all-grid" class="divide-y divide-gray-100">
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- フッター -->
   <footer class="bg-dark text-white py-12 border-t-4 border-primary">
@@ -847,19 +822,29 @@
     });
 
     // --- 7. Newsハイライト ---
-    function setNewsHighlight() {
-      const newsContainer = document.getElementById('news-grid');
+    function setNews(showAll) {
+      const newsContainer = showAll ? document.getElementById('news-all-grid') : document.getElementById('news-grid');
       newsContainer.innerHTML = '';
       const newsTotal = newsContent.length;
       console.log(newsTotal);
-      for (let i = 0; i < 3; i++) {
+      const maxContentsLength = showAll ? newsTotal : 3;
+      for (let i = 0; i < maxContentsLength; i++) {
         const content = newsContent.find(m => m.id === newsTotal - i);
-        let contentHTML = `
+        let contentHTML = ``;
+        if(showAll){
+          contentHTML += `
             <li class="hover:bg-gray-50 transition-colors">
-              <div class="flex flex-col md:flex-row md:items-center p-6 gap-4" onclick="showNewsDetail(${content.id})">
+              <div class="flex flex-col md:flex-row md:items-center p-6 gap-4" onclick="AllToDetail(${content.id})">
                 <div class="flex items-center gap-4 md:w-48 shrink-0">
                   <span class="text-gray-400 font-en font-medium">${content.date}</span>`;
-        switch (content.tag){
+        }else{
+          contentHTML += `
+            <li class="hover:bg-gray-50 transition-colors">
+              <div class="flex flex-col md:flex-row md:items-center p-6 gap-4" onclick="MainToDetail(${content.id})">
+                <div class="flex items-center gap-4 md:w-48 shrink-0">
+                  <span class="text-gray-400 font-en font-medium">${content.date}</span>`;
+        }
+        switch (content.tag) {
           case "お知らせ":
             contentHTML += `<span class="bg-purple-100 text-purple-600 text-xs font-bold px-3 py-1 rounded-full">${content.tag}</span>`;
             break;
@@ -869,7 +854,7 @@
           case "動画更新":
             contentHTML += `<span class="text-gray-400 text-xs font-bold px-3 py-1 rounded-full">${content.tag}</span>`;
             break;
-          default: contentHTML += `<span class="bg-purple-100 text-purple-600 text-xs font-bold px-3 py-1 rounded-full">${content.tag}</span>`;
+          default: contentHTML += `<span class="text-xs font-bold px-3 py-1 rounded-full">${content.tag}</span>`;
         }
         contentHTML += `</div>
                 <h4 class="text-gray-800 font-bold text-lg flex-1 group-hover:text-primary transition-colors">
@@ -884,10 +869,18 @@
       }
     }
 
-    setNewsHighlight();
+    // 全表示部分の内容
+    setNews(true);
+    // ハイライト部分の内容
+    setNews(false);
 
     // --- 8. News詳細 ---
-    function showNewsDetail(id) {
+    function MainToDetail(id) {
+      document.getElementById('news-back-btn').innerHTML = `<button onclick="DetailToMain()"
+        class="group flex items-center gap-3 text-slate-400 hover:text-primary font-bold mb-12 transition-colors">
+        <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i> BACK TO HOME
+      </button>`;
+
       const data = newsContent.find(m => m.id === id);
       document.getElementById('news-content-area').innerHTML = `
                 <span class="text-primary font-en font-bold text-sm tracking-widest uppercase">${data.tag}</span>
@@ -897,13 +890,54 @@
             `;
       document.getElementById('view-home').classList.add('hidden');
       document.getElementById('view-news-detail').classList.remove('hidden');
+      document.getElementById('view-news-all').classList.add('hidden');
       window.scrollTo(0, 0);
     }
 
-    function hideNewsDetail() {
+    function DetailToMain() {
       document.getElementById('view-home').classList.remove('hidden');
       document.getElementById('view-news-detail').classList.add('hidden');
+      document.getElementById('view-news-all').classList.add('hidden');
       document.getElementById('news').scrollIntoView();
+    }
+
+    // --- 9. News全表示 ---
+    function MainToAll() {
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-news-detail').classList.add('hidden');
+      document.getElementById('view-news-all').classList.remove('hidden');
+    }
+
+    function AllToMain() {
+      document.getElementById('view-home').classList.remove('hidden');
+      document.getElementById('view-news-detail').classList.add('hidden');
+      document.getElementById('view-news-all').classList.add('hidden');
+      document.getElementById('news').scrollIntoView();
+    }
+
+    function AllToDetail(id) {
+      document.getElementById('news-back-btn').innerHTML = `<button onclick="DetailToAll()"
+        class="group flex items-center gap-3 text-slate-400 hover:text-primary font-bold mb-12 transition-colors">
+        <i class="fa-solid fa-arrow-left group-hover:-translate-x-2 transition-transform"></i> BACK TO HOME
+      </button>`;
+
+      const data = newsContent.find(m => m.id === id);
+      document.getElementById('news-content-area').innerHTML = `
+                <span class="text-primary font-en font-bold text-sm tracking-widest uppercase">${data.tag}</span>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mt-4 mb-8 leading-tight">${data.title}</h1>
+                <div class="text-slate-400 font-en font-bold mb-16">${data.date}</div>
+                <div class="prose prose-xl prose-slate">${data.body}</div>
+            `;
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-news-detail').classList.remove('hidden');
+      document.getElementById('view-news-all').classList.add('hidden');
+      window.scrollTo(0, 0);
+    }
+
+    function DetailToAll() {
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-news-detail').classList.add('hidden');
+      document.getElementById('view-news-all').classList.remove('hidden');
     }
   </script>
 </body>

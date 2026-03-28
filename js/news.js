@@ -2,23 +2,30 @@
 const newsContent = [
     {
         id: 1,
-        title: "EnjoyGameUnion!! 公式Webサイトをオープンしました！",
-        date: "2026.03.20",
-        tag: "お知らせ",
-        body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>オープンってワケ</p>`
+        title: "バラエティ動画『おしゃれ番長 エリリ・エリ コーデバトル』公開！",
+        date: "2026.01.30",
+        tag: "動画更新",
+        body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>エリリ・エリ主導のバラエティ企画『おしゃれ番長 エリリ・エリ コーデバトル』が始動しました！</p>`
     },
     {
         id: 2,
-        title: "新曲「Enjoy Virtual Life」MV公開！",
-        date: "2026.03.20",
+        title: "歌ってみた動画『ようこそジャパリパークへ』公開！",
+        date: "2026.02.14",
         tag: "動画更新",
-        body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>Union全メンバーが参加した初の合唱曲がリリース。34名の個性が重なり合うハーモニーをぜひお楽しみください。</p>`
+        body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>EGUあにまるず(UTAN、エリリ・エリ、Tooka、とと)による歌ってみた動画『ようこそジャパリパークへ』が公開されました！</p>`
     },
     {
         id: 3,
-        title: "VRChat内「春の大型FPS大会」にメンバー3名が出場決定！",
-        date: "2026.03.25",
+        title: "ボイス『震える君を抱きしめて』販売開始！",
+        date: "2026.03.14",
         tag: "活動報告",
-        body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>来月開催されるVRChat最大級のFPSトーナメントに、Unionから選抜チームが出場します。練習の様子はYouTubeでも公開中！</p>`
+        body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>ずんだゆきによるシチュエーションボイス『震える君を抱きしめて【サド甘お兄さんに死ぬほど愛されるシチュボ】』がBoothにて販売開始されました！<br></p>`
+    },
+    {
+        id: 4,
+        title: "EnjoyGameUnion!! 公式Webサイトをオープンしました！",
+        date: "2026.03.25",
+        tag: "お知らせ",
+        body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>オープンってワケ</p>`
     },
 ];
