@@ -28,4 +28,12 @@ const newsContent = [
         tag: "お知らせ",
         body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>オープンってワケ</p>`
     },
+    // {
+    //     id: ,
+    //     title: "タイトル",
+    //     date: "YYYY.MM.DD",
+    //     tag: "お知らせ・活動報告・動画更新",
+    //     body: `<p class='text-slate-600 mb-8 leading-loose text-lg'>本文</p>`
+    // あとbodyでよく使いそうなタグの例を書いておく
+    // },
 ];

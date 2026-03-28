@@ -376,4 +376,17 @@ const membersData = [
     x: "mikanoisii72360",
     youtube: "",
   },
+  // {
+  //   id: ,
+  //   name: "活動名",
+  //   vrc: "VRC名",
+  //   tag: ["運営・裏方", "メンバー"],
+  //   color: "#000000",
+  //   desc: "自己紹介",
+  //   images: [
+  //     "画像1", "画像2", "画像3", 
+  //   ],
+  //   x: "XのID(ないときは空白)",
+  //   youtube: "youtubeチャンネルのID(ないときは空白)",
+  // },
 ];
