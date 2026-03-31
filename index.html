@@ -645,7 +645,14 @@
           <h4 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
             <i class="fa-solid fa-user-tag text-primary text-sm"></i> 自己紹介
           </h4>
-          <div id="modal-desc" class="text-slate-600 leading-loose text-lg mb-10"></div>
+          <div id="modal-desc1" class="text-slate-600 leading-loose text-lg mb-10"></div>
+
+          <h4 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-star text-primary text-sm"></i> EGUでの活動
+          </h4>
+          <div id="modal-desc2" class="text-slate-600 leading-loose text-lg mb-10"></div>
+          <p class="text-slate-600 leading-loose mb-10">
+          </p>
         </div>
 
         <div id="modal-links" class="flex gap-4 pt-6 border-t border-slate-100">
@@ -771,7 +778,8 @@
       document.getElementById('modal-name').textContent = member.name;
       document.getElementById('modal-en').textContent = member.en;
       document.getElementById('modal-tag').textContent = member.tag;
-      document.getElementById('modal-desc').textContent = member.desc;
+      document.getElementById('modal-desc1').textContent = member.desc1;
+      document.getElementById('modal-desc2').textContent = member.desc2;
       for (let i = 0; i < 3; i++) {
         document.getElementById(`slide-${i}`).src = member.images[i];
       }

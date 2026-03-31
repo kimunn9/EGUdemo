@@ -5,7 +5,8 @@ const membersData = [
     vrc: "トッサノ",
     tag: ["主催"],
     color: "#111111",
-    desc: "EnjoyGameUnion!!の発起人。",
+    desc1: "EnjoyGameUnion!!の発起人。",
+    desc2: "sssss",
     images: [
       ""
     ],
@@ -18,7 +19,8 @@ const membersData = [
     vrc: "ずんだゆき",
     tag: ["運営・裏方"],
     color: "#5ED464",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -31,7 +33,8 @@ const membersData = [
     vrc: "Sava_403",
     tag: ["運営・裏方"],
     color: "#7148B0",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -44,7 +47,8 @@ const membersData = [
     vrc: "Dr_Anri",
     tag: ["メンバー"],
     color: "#FF6FFF",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -57,7 +61,8 @@ const membersData = [
     vrc: "majennte",
     tag: ["メンバー"],
     color: "#C77300",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -70,7 +75,8 @@ const membersData = [
     vrc: "UTAN_DX",
     tag: ["メンバー"],
     color: "#fc2915",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -83,7 +89,8 @@ const membersData = [
     vrc: "エリリ・エリ",
     tag: ["メンバー"],
     color: "#ffef0c",
-    desc: "",
+    desc1: "EGUの清楚ワンコ担当、エリリ・エリです。<br>VRChatでは主にキャスト業を行ったり、Nagisaに行ったり、動画制作をしたりしています。<br>EGUではゲーム配信時に画面担当などをしています。<br>無暗に褒めると胃痛で苦しみだすので要注意！<br>FPSをすると人を撃つ快感で悶え始めます。<br>同性の推しに対してはコミュ障が発動して隣に立てなくなります。<br>──実はEGU内のシチュボブーム火付け役（？）でもある…？",
+    desc2: "歌ってみた/ゲーム配信/おしゃれ番長エリリ・エリ　コーデバトル",
     images: [
       ""
     ],
@@ -96,7 +103,8 @@ const membersData = [
     vrc: "garavella",
     tag: ["メンバー"],
     color: "#900ffa",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -109,7 +117,8 @@ const membersData = [
     vrc: "Shiranatsu_haru",
     tag: ["メンバー"],
     color: "#ff9dff",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -122,7 +131,8 @@ const membersData = [
     vrc: "NAOZEN s8",
     tag: ["メンバー"],
     color: "#ff7b00",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -135,7 +145,8 @@ const membersData = [
     vrc: "ぐらすず",
     tag: ["メンバー"],
     color: "#00CD2F",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -148,7 +159,8 @@ const membersData = [
     vrc: "もっくたろう。",
     tag: ["メンバー"],
     color: "#f51e0f",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -161,7 +173,8 @@ const membersData = [
     vrc: "しんやぞ",
     tag: ["メンバー"],
     color: "#ffd643",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -174,7 +187,8 @@ const membersData = [
     vrc: "saboint",
     tag: ["メンバー"],
     color: "#ee8a2c",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -187,7 +201,8 @@ const membersData = [
     vrc: "metal suraimi",
     tag: ["メンバー"],
     color: "#2B8EFF",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -200,7 +215,8 @@ const membersData = [
     vrc: "とと（toto）",
     tag: ["メンバー"],
     color: "#ffb8f0",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -213,7 +229,8 @@ const membersData = [
     vrc: "ちぇるびん",
     tag: ["メンバー"],
     color: "#7c11a7",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -226,7 +243,8 @@ const membersData = [
     vrc: "komatsu_",
     tag: ["メンバー"],
     color: "#D9F2FF",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -239,7 +257,8 @@ const membersData = [
     vrc: "Tooka_",
     tag: ["メンバー"],
     color: "#4e1ff8",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       "./img/members/19-Tooka01.png", 
       "./img/members/19-Tooka02.png", 
@@ -254,7 +273,8 @@ const membersData = [
     vrc: "rneguri",
     tag: ["メンバー"],
     color: "#d1d1d1",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -267,7 +287,8 @@ const membersData = [
     vrc: "ChelseaPOP",
     tag: ["メンバー"],
     color: "#eb5a96",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -280,7 +301,8 @@ const membersData = [
     vrc: "RI------------N",
     tag: ["メンバー"],
     color: "#f1ccb7",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -293,7 +315,8 @@ const membersData = [
     vrc: "ふなナッツ",
     tag: ["メンバー"],
     color: "#bb895a",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -306,7 +329,8 @@ const membersData = [
     vrc: "すふれぇ",
     tag: ["メンバー"],
     color: "#cacaca",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -319,7 +343,8 @@ const membersData = [
     vrc: "るた／ruta",
     tag: ["メンバー"],
     color: "#e99481",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -332,7 +357,8 @@ const membersData = [
     vrc: "KAITO-030",
     tag: ["メンバー"],
     color: "#205ada",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -345,7 +371,8 @@ const membersData = [
     vrc: "61__",
     tag: ["メンバー"],
     color: "#b80909",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -358,7 +385,8 @@ const membersData = [
     vrc: "sino_214",
     tag: ["メンバー"],
     color: "#424242",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -371,7 +399,8 @@ const membersData = [
     vrc: "mikanoisii",
     tag: ["メンバー"],
     color: "#8f67b6",
-    desc: "",
+    desc1: "",
+    desc2: "",
     images: [
       ""
     ],
@@ -384,7 +413,8 @@ const membersData = [
   //   vrc: "VRC名",
   //   tag: ["運営・裏方", "メンバー"],
   //   color: "#000000",
-  //   desc: "自己紹介",
+  //   desc1: "自己紹介",
+  //   desc2: "EGUでの活動",
   //   images: [
   //     "画像1", "画像2", "画像3", 
   //   ],
