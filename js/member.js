@@ -241,9 +241,9 @@ const membersData = [
     color: "#4e1ff8",
     desc: "",
     images: [
-      "../img/members/19-Tooka01.png", 
-      "../img/members/19-Tooka02.png", 
-      "../img/members/19-Tooka03.png"
+      "./img/members/19-Tooka01.png", 
+      "./img/members/19-Tooka02.png", 
+      "./img/members/19-Tooka03.png"
     ],
     x: "t1o0k",
     youtube: "t1o0k-a",
