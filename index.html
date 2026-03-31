@@ -138,6 +138,21 @@
       transform: translateY(0);
     }
 
+    /* aboutフェードイン・アウト */
+    .about-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+
+    .about-slide.active {
+      opacity: 1;
+    }
+
     /* メンバーカードのホバーエフェクト */
     .member-card {
       transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -346,9 +361,14 @@
         <div class="grid md:grid-cols-2 gap-16 items-center">
           <div class="fade-in-up">
             <h3 class="text-4xl md:text-5xl font-black text-slate-900 mb-8 leading-tight">
-              ゲームを愛する<br>すべての人のために。
+              VRChatで<br>ゲームを楽しみたい！
             </h3>
             <p class="text-slate-600 text-lg leading-loose mb-8">
+              『EnjoyGameUnion!!』は、そんなシンプルで純粋な想いから発足したグループです。<br>
+              「ゲームが好き」という一つの共通点で繋がった仲間たち。<br>
+              <br>
+              雑談したり、パーティーゲームで腹を抱えて笑ったり、時には本気で大会を目指してみたり。<br>
+              ジャンルや枠組みにとらわれず、様々なゲームを"全力で"楽しむことをモットーとしています。<br>
               「EnjoyGameUnion!!」は、VRChatの世界からゲームの面白さを発信するコミュニティです。配信、動画、イベント、そしてメタバース空間での交流を通じて、ゲームが持つ無限の可能性を追求しています。
             </p>
             <div class="grid grid-cols-2 gap-6">
@@ -361,11 +381,17 @@
                 <div class="text-xs font-bold text-slate-400 uppercase tracking-widest">Fun</div>
               </div>
             </div>
+            <p class="font-bold text-dark mt-8 border-t border-gray-100 pt-8">
+              私たちの活動を通じて、見ているあなたにも「楽しい！」を感染させたい。<br>
+              バーチャルから始まる、新しいエンターテインメントをお届けします。
+            </p>
           </div>
           <div class="fade-in-up delay-200 relative">
-            <div
-              class="aspect-square bg-slate-100 rounded-[3rem] overflow-hidden rotate-3 flex items-center justify-center p-12">
-              <i class="fa-solid fa-gamepad text-[10rem] text-slate-200 -rotate-12"></i>
+            <div class="aspect-square bg-slate-100 rounded-[3rem] overflow-hidden rotate-3 relative">
+              <img src="./img/about/about-01.webp" class="about-slide active">
+              <img src="./img/about/about-02.webp" class="about-slide">
+              <img src="./img/about/about-03.webp" class="about-slide">
+              <img src="./img/about/about-04.webp" class="about-slide">
             </div>
             <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
           </div>
@@ -643,6 +669,20 @@
   </script>
   <script src="js/news.js">
     // --- 2. news読込 ---
+  </script>
+
+    // --- 3. Aboutの画像切り替え
+  <script>
+    const aboutSlide = document.querySelectorAll('.about-slide');
+    let currentSlides = 0;
+
+    setInterval(() => {
+      aboutSlide[currentSlides].classList.remove('active');
+
+      currentSlides = (currentSlides + 1) % aboutSlide.length;
+
+      aboutSlide[currentSlides].classList.add('active');
+    }, 4000); // 4秒ごと切り替え
   </script>
 
   <script>
@@ -960,7 +1000,8 @@
       document.getElementById('view-news-detail').classList.add('hidden');
       document.getElementById('view-news-all').classList.remove('hidden');
     }
-  </script>
+    </script>
+
 </body>
 
 </html>
