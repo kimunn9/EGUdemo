@@ -309,6 +309,8 @@
             class="fa-brands fa-x-twitter"></i></a>
         <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank" class="hover:text-red-600"><i
             class="fa-brands fa-youtube"></i></a>
+        <a href="https://egu.booth.pm/" target="_blank" class="hover:text-[#fc4d50]"><i
+            class="fa-solid fa-cart-shopping"></i></a>
       </div>
       <p class="text-[10px] font-bold text-slate-300 uppercase tracking-widest">© 2026 EnjoyGameUnion!!</p>
     </div>
@@ -494,7 +496,7 @@
               </div>
             </div>
             <h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">おしゃれ番長 エリリ・エリ コーデバトル</h4>
-            <p class="text-slate-500 text-sm leading-relaxed">エリリ・エリがお届けするバラエティ番組。</p>
+            <p class="text-slate-500 text-sm leading-relaxed">"自称" 番長！ゆるふわお姉さんエリリ・エリがお届けするファッションバラエティ番組。</p>
           </a>
           <!-- ゲーム配信 -->
           <a href="https://www.youtube.com/playlist?list=PLsYg7sr7EZhMXmscI7dvX-0KCFi5agQf_" target="_blank"
@@ -609,6 +611,10 @@
         <a href="https://www.youtube.com/@EnjoyGameUnion" target="_blank"
           class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-red-600 transition-colors">
           <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="https://egu.booth.pm/" target="_blank"
+          class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-white hover:bg-[#fc4d50] transition-colors">
+          <i class="fa-solid fa-cart-shopping"></i>
         </a>
       </div>
     </div>
@@ -794,8 +800,8 @@
       document.getElementById('modal-name').textContent = member.name;
       document.getElementById('modal-en').textContent = member.en;
       document.getElementById('modal-tag').textContent = member.tag;
-      document.getElementById('modal-desc1').textContent = member.desc1;
-      document.getElementById('modal-desc2').textContent = member.desc2;
+      document.getElementById('modal-desc1').innerHTML = member.desc1;
+      document.getElementById('modal-desc2').innerHTML = member.desc2;
       for (let i = 0; i < 3; i++) {
         document.getElementById(`slide-${i}`).src = member.images[i];
       }

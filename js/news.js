@@ -144,7 +144,7 @@ const newsContent = [
         title: "ボイス『震える君を抱きしめて』販売開始！",
         date: "2026.03.14",
         tag: "活動報告",
-        body: `<img src="./img/news/NEWS-03-01.webp" class="w-full h-auto rounded-3xl mb-8 shadow-lg" alt="アイキャッチ">
+        body: `<img src="./img/news/NEWS-03-01.webp" class="w-full h-auto rounded-3xl mb-8 shadow-lg" alt="震える君を抱きしめて">
 
         <h3 class="text-2xl font-bold text-slate-900 mb-4 border-l-4 border-primary pl-4">
             シチュエーションボイス『震える君を抱きしめて』販売開始
@@ -230,7 +230,7 @@ const newsContent = [
         title: "EnjoyGameUnion!! 公式Webサイトをオープンしました！",
         date: "2026.03.25",
         tag: "お知らせ",
-        body: `<img src="./img/news/NEWS-04-01.webp" class="w-full h-auto rounded-3xl mb-8 shadow-lg" alt="アイキャッチ">
+        body: `<img src="./img/news/NEWS-04-01.webp" class="w-full h-auto rounded-3xl mb-8 shadow-lg" alt="EGU公式サイト">
 
         <h3 class="text-2xl font-bold text-slate-900 mb-4 border-l-4 border-primary pl-4">
             EnjoyGameUnion!! 公式サイト公開のお知らせ
@@ -252,6 +252,77 @@ const newsContent = [
                 EnjoyGameUnion!!は、「楽しくゲームをすること」をモットーに活動するコミュニティです。<br>
                 今後も様々な企画やコンテンツを展開してまいります。
             </p>
+        </div>`
+    },
+    {
+        id: 5,
+        title: "ボイス『メスガキの耳かきで屈服』販売開始！",
+        date: "2026.04.01",
+        tag: "活動報告",
+        body: `<img src="./img/news/NEWS-05-01.webp" class="w-full h-auto rounded-3xl mb-8 shadow-lg" alt="メスガキに耳かきをされるシチュボ">
+
+        <h3 class="text-2xl font-bold text-slate-900 mb-4 border-l-4 border-primary pl-4">
+            シチュエーションボイス『メスガキの耳かきで屈服』販売開始
+        </h3>
+
+        <p class="mb-6 text-slate-600 leading-loose">
+            こまつちまによるシチュエーションボイス『メスガキの耳かきで屈服』を販売開始しました。<br>
+            小悪魔的な挑発と心地よさが交差する、没入感のある音声作品となっています。
+        </p>
+        <div class="flex justify-center my-8">
+            <a href="https://egu.booth.pm/items/8151321" target="_blank" 
+                class="group flex items-center gap-3 bg-[#fc4d50] text-white font-black py-4 px-10 rounded-2xl shadow-xl shadow-red-100 hover:bg-[#ff5a5d] hover:-translate-y-1 transition-all duration-300">
+                <i class="fa-solid fa-cart-shopping text-xl"></i>
+                <span>BOOTHでチェックする</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-50 group-hover:opacity-100 transition-opacity"></i>
+            </a>
+        </div>
+
+        <h3 class="text-xl font-bold mb-4">◆音声概要</h3>
+        <p class="mb-8 text-slate-600 leading-loose">
+            一人暮らしの家に突然やってきた、小悪魔的で距離感の近い少女。<br>
+            生活ぶりをからかいながらも自然と距離を縮め、耳かきで勝負を持ちかける……<br>
+            <br>
+            甘く挑発的なやり取りに翻弄されながら、癒やしとドキドキが交差していく――<br>
+            そんな不思議なひとときを描いたシチュエーションボイスです。
+        </p>
+
+        <h3 class="text-xl font-bold mb-4">◆収録内容</h3>
+        <ul class="mb-8 text-slate-600 leading-loose list-disc list-inside">
+            <li>本編：0:12:01</li>
+            <li>形式：WAV / 動画編集版MP4同梱</li>
+            <li>おやつ代のみメッセージカード付き</li>
+        </ul>
+
+        <h3 class="text-xl font-bold mb-4">◆注意事項</h3>
+        <p class="mb-8 text-slate-600 leading-loose">
+            ご購入者様の個人利用にのみ限定させて頂きます。<br>
+            データ商品の二次配布・無断転載を固く禁じます。
+        </p>
+
+        <h3 class="text-xl font-bold mb-4">◆クレジット</h3>
+        <ul class="mb-8 text-slate-600 leading-loose list-disc list-inside">
+            <li>ボイスアクター：こまつちま<br>
+                <a href="https://x.com/komatsu_chiii" target="_blank" class="text-primary underline">
+                    https://x.com/komatsu_chiii
+                </a>
+            </li>
+            <li>動画協力：トッサノ<br>
+                <a href="https://x.com/tossanovrc" target="_blank" class="text-primary underline">
+                    https://x.com/tossanovrc
+                </a>
+            </li>
+        </ul>
+
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+            <p class="text-sm font-bold text-slate-500 mb-2 uppercase tracking-widest">Assets</p>
+            <ul class="text-slate-600 leading-loose list-disc list-inside">
+                <li>ジンゴ様：オリジナル3Dモデル「マヌカ」</li>
+                <li>杜本様：『Twilight Greige』eye＋make＋body texture</li>
+                <li>Iseo様：【Sweetie Story 】スイートストーリー</li>
+                <li>pipiza様：Twinkle Tails</li>
+                <li>ねここや@かんな久様：【VR-ASMRツールセット 9種類】</li>
+            </ul>
         </div>`
     },
     
