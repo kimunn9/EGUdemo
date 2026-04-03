@@ -143,8 +143,8 @@ const membersData = [
   },
   {
     id: 11,
-    name: "ぐらすず",
-    vrc: "ぐらすず",
+    name: "サボスズ",
+    vrc: "サボスズ",
     tag: ["メンバー"],
     color: "#00CD2F",
     desc1: "",
