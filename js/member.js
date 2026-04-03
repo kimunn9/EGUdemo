@@ -189,7 +189,7 @@ const membersData = [
     vrc: "saboint",
     tag: ["メンバー"],
     color: "#ee8a2c",
-    desc1: "",
+    desc1: "龍だぞ",
     desc2: "",
     images: [
       ""
