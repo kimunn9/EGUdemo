@@ -175,7 +175,7 @@ const membersData = [
     vrc: "しんやぞ",
     tag: ["メンバー"],
     color: "#ffd643",
-    desc1: "",
+    desc1: "サボイントの相方",
     desc2: "",
     images: [
       ""
