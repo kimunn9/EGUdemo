@@ -161,7 +161,7 @@ const membersData = [
     vrc: "もっくたろう。",
     tag: ["メンバー"],
     color: "#f51e0f",
-    desc1: "",
+    desc1: "サボイントの一番弟子",
     desc2: "",
     images: [
       ""
