@@ -8,9 +8,9 @@ const membersData = [
     desc1: "EGUのなんかリーダーをしているらしいクラゲ<br>楽しいことをしたい！という気分でEGUで立ち上げたらなんかすごいことになった、皆凄いね<br>MV作るのが趣味で、ほっとくと一生作業をし続ける",
     desc2: "リーダーをしているらしい<br>MVとか動画とか作成したい<br>ラジオ、ゲーム配信",
     images: [
-      "./img/members/01-トッサノ01.png", 
-      "./img/members/01-トッサノ02.png", 
-      "./img/members/01-トッサノ03.png"
+      "./img/members/01-トッサノ-01.png", 
+      "./img/members/01-トッサノ-02.png", 
+      "./img/members/01-トッサノ-03.png"
     ],
     x: "tossanovrc",
     youtube: "tossanogyotaku",
@@ -24,9 +24,9 @@ const membersData = [
     desc1: 'VRChatを中心に活動している裏方・技術サポート担当です。<br>イベント運営や配信まわりを得意としていて、これまでに「EGU杯（EnjoyGameUnion）」などの大会配信や企画進行に関わってきました。ストリートファイター6やVALORANTといったタイトルの大会運営・配信サポートを担当しています。<br>「楽しくゲームすること」を大切にしながら、参加者も視聴者も安心して楽しめる環境づくりを裏側から支えるのが自分の役割です。<br>VRChatを活用したイベント企画や配信まわりのご相談も歓迎していますので、気軽にお声がけください。',
     desc2: "なし",
     images: [
-      "./img/members/02-ずんだゆき01.png", 
-      "./img/members/02-ずんだゆき02.png", 
-      "./img/members/02-ずんだゆき03.png"
+      "./img/members/02-ずんだゆき-01.png", 
+      "./img/members/02-ずんだゆき-02.png", 
+      "./img/members/02-ずんだゆき-03.png"
     ],
     x: "zund_Yuki",
     youtube: "",
@@ -96,9 +96,9 @@ const membersData = [
     desc1: "EGUの清楚ワンコ担当、エリリ・エリです。<br>VRChatでは主にキャスト業を行ったり、Nagisaに行ったり、動画制作をしたりしています。<br>EGUではゲーム配信時に画面担当などをしています。<br>無暗に褒めると胃痛で苦しみだすので要注意！<br>FPSをすると人を撃つ快感で悶え始めます。<br>同性の推しに対してはコミュ障が発動して隣に立てなくなります。<br>──実はEGU内のシチュボブーム火付け役（？）でもある…？",
     desc2: "歌ってみた/ゲーム配信/おしゃれ番長エリリ・エリ　コーデバトル",
     images: [
-      "./img/members/07-エリリ・エリ01.png", 
-      "./img/members/07-エリリ・エリ02.png", 
-      "./img/members/07-エリリ・エリ03.png"
+      "./img/members/07-エリリ・エリ-01.png", 
+      "./img/members/07-エリリ・エリ-02.png", 
+      "./img/members/07-エリリ・エリ-03.png"
     ],
     x: "nameSnow66",
     youtube: "",
@@ -182,9 +182,9 @@ const membersData = [
     desc1: "おもろいことがとにかく好きなロポりこん<br>VRCでは寝落ちの神でありどこでも寝られる<br>EGUではわちゃわちゃうるさくしてるぞ！<br>生粋のFPSゲーマーだけどゲーム全般なんでも大好き！<br>座右の銘は生きてりゃ大抵のことはなんとかなる",
     desc2: "ゲーム配信",
     images: [
-      "./img/members/13-しんやぞ01.png", 
-      "./img/members/13-しんやぞ02.png", 
-      "./img/members/13-しんやぞ03.png"
+      "./img/members/13-しんやぞ-01.png", 
+      "./img/members/13-しんやぞ-02.png", 
+      "./img/members/13-しんやぞ-03.png"
     ],
     x: "Zz_sinsin_Zz",
     youtube: "",
@@ -198,9 +198,9 @@ const membersData = [
     desc1: "EGU内の最強ドラゴン。オス。小さい。足が遅い。力が弱い。火ふけない。翼がないから飛べない。角と尻尾がデカい。<br>好きなものはお酒。嫌いなものは柔軟剤。<br>ゲームが得意。人の名前を覚えるのが苦手。",
     desc2: "ゲームしてるだけ",
     images: [
-      "./img/members/14-さぼいんと01.png", 
-      "./img/members/14-さぼいんと02.png", 
-      "./img/members/14-さぼいんと03.png"
+      "./img/members/14-さぼいんと-01.png", 
+      "./img/members/14-さぼいんと-02.png", 
+      "./img/members/14-さぼいんと-03.png"
     ],
     x: "morrimorriGhh",
     youtube: "",
@@ -228,9 +228,9 @@ const membersData = [
     desc1: "マイペースに日々を生きたいキプフェル<br>フレンドに会いに行ったことがきっかけで加入した<br><br>EGUに入ってゲームに触れた初心者枠！<br>センスは壊滅的だけど、いつか得意なゲームが見つかるはず<br>いつも納期に追われているのでEGU企画は単発やゲスト参加が多め <br><br>好きなものは動物とお酒<br>トレードマークは真っ赤ないちご！",
     desc2: "歌みた、ゲーム、EGUあにまるず",
     images: [
-      "./img/members/16-とと01.png", 
-      "./img/members/16-とと02.png", 
-      "./img/members/16-とと03.png"
+      "./img/members/16-とと-01.png", 
+      "./img/members/16-とと-02.png", 
+      "./img/members/16-とと-03.png"
     ],
     x: "Tototo_Tatin",
     youtube: "",
@@ -258,9 +258,9 @@ const membersData = [
     desc1: "EGUのゲラ担当こまつです。絵を描くのが好きでたまに個人チャンネルで配信もしています。VRCではチルワールドでのんびり作業しながら雑談するのが好き。オススメのチルワ随時募集中です。<br>ゲームはFPS、MMO、サバイバル系等なんでもやります。<br>イメージカラーは青。<br>ママではありません。",
     desc2: "歌ってみた/ゲーム配信/シュチュエーションボイス",
     images: [
-      "./img/members/18-こまつちま01.png", 
-      "./img/members/18-こまつちま02.png", 
-      "./img/members/18-こまつちま03.png"
+      "./img/members/18-こまつちま-01.png", 
+      "./img/members/18-こまつちま-02.png", 
+      "./img/members/18-こまつちま-03.png"
     ],
     x: "komatsu_chiii",
     youtube: "komatsu-chiii",
@@ -274,9 +274,9 @@ const membersData = [
     desc1: "メカクレはいいぞ。<br>配信素材作りや動画編集の傍ら、たまーに配信活動に顔を出しています。<br>大喜利と謎解き、麻雀と日本酒が好き。<br>ゆるーく適当に生きていきたい。<br>イメージカラーは青紫。",
     desc2: "裏方、歌ってみた、ゲーム配信",
     images: [
-      "./img/members/19-Tooka01.png", 
-      "./img/members/19-Tooka02.png", 
-      "./img/members/19-Tooka03.png"
+      "./img/members/19-とおか-01.png", 
+      "./img/members/19-とおか-02.png", 
+      "./img/members/19-とおか-03.png"
     ],
     x: "t1o0k",
     youtube: "t1o0k-a",
