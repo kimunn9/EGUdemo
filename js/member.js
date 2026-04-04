@@ -5,10 +5,12 @@ const membersData = [
     vrc: "トッサノ",
     tag: ["主催"],
     color: "#111111",
-    desc1: "EnjoyGameUnion!!の発起人。",
-    desc2: "sssss",
+    desc1: "EGUのなんかリーダーをしているらしいクラゲ<br>楽しいことをしたい！という気分でEGUで立ち上げたらなんかすごいことになった、皆凄いね<br>MV作るのが趣味で、ほっとくと一生作業をし続ける",
+    desc2: "リーダーをしているらしい<br>MVとか動画とか作成したい<br>ラジオ、ゲーム配信",
     images: [
-      ""
+      "./img/members/01-トッサノ01.png", 
+      "./img/members/01-トッサノ02.png", 
+      "./img/members/01-トッサノ03.png"
     ],
     x: "tossanovrc",
     youtube: "tossanogyotaku",
@@ -35,8 +37,8 @@ const membersData = [
     vrc: "Sava_403",
     tag: ["運営・裏方"],
     color: "#7148B0",
-    desc1: "",
-    desc2: "",
+    desc1: "歌が好きな裏方・運営のお兄さん（？）<br><br>技術力とかはからっきしなので、コミュニティマネジメントや大会運営などを担当しつつ、<br><br>メンバーの皆がそれぞれの個性を出しながら輝ける場所を作ろうと日々奮闘している。<br><br>イメージカラーは紫色。<br><br>ゲストで呼ばれた配信では参加者として場をわちゃわちゃさせたり、<br>自チャンネルではたまに歌ってみた動画を上げたりする。<br><br>得意技は飲酒時に繰り出される俊敏な首の動き。",
+    desc2: "裏方、運営<br>ゲーム配信<br>ゲストパーソナリティ",
     images: [
       ""
     ],
@@ -77,8 +79,8 @@ const membersData = [
     vrc: "UTAN_DX",
     tag: ["メンバー"],
     color: "#fc2915",
-    desc1: "",
-    desc2: "",
+    desc1: "楽しい事や面白い事が大好きなジト目愛好家。<br>EGUには、ぬるっと現れ、そしてぬるっと去る。<br>猫みたいな感じ🐱ぎゃおん<br><br>好き：自分が関わってない\"面白い事\"を煽る事<br>嫌い：鼻くそ食べるやつ",
+    desc2: "歌ってみた / ゲーム配信",
     images: [
       ""
     ],
@@ -94,7 +96,9 @@ const membersData = [
     desc1: "EGUの清楚ワンコ担当、エリリ・エリです。<br>VRChatでは主にキャスト業を行ったり、Nagisaに行ったり、動画制作をしたりしています。<br>EGUではゲーム配信時に画面担当などをしています。<br>無暗に褒めると胃痛で苦しみだすので要注意！<br>FPSをすると人を撃つ快感で悶え始めます。<br>同性の推しに対してはコミュ障が発動して隣に立てなくなります。<br>──実はEGU内のシチュボブーム火付け役（？）でもある…？",
     desc2: "歌ってみた/ゲーム配信/おしゃれ番長エリリ・エリ　コーデバトル",
     images: [
-      ""
+      "./img/members/07-エリリ・エリ01.png", 
+      "./img/members/07-エリリ・エリ02.png", 
+      "./img/members/07-エリリ・エリ03.png"
     ],
     x: "nameSnow66",
     youtube: "",
@@ -143,8 +147,8 @@ const membersData = [
   },
   {
     id: 11,
-    name: "サボスズ",
-    vrc: "サボスズ",
+    name: "ぐらすず",
+    vrc: "ぐらすず",
     tag: ["メンバー"],
     color: "#00CD2F",
     desc1: "",
@@ -161,8 +165,8 @@ const membersData = [
     vrc: "もっくたろう。",
     tag: ["メンバー"],
     color: "#f51e0f",
-    desc1: "サボイントの一番弟子",
-    desc2: "",
+    desc1: "天上天下唯我独尊、目指せ俺だけがちやほやされる世界<br>トッサノに主人公というレッテルを張られた半端者<br><br>様々な素材を作ることで恩を売っている。<br>歌みたに力を入れたいと思っている。",
+    desc2: "歌みた、ゲーム配信",
     images: [
       ""
     ],
@@ -175,10 +179,12 @@ const membersData = [
     vrc: "しんやぞ",
     tag: ["メンバー"],
     color: "#ffd643",
-    desc1: "サボイントの相方",
-    desc2: "",
+    desc1: "おもろいことがとにかく好きなロポりこん<br>VRCでは寝落ちの神でありどこでも寝られる<br>EGUではわちゃわちゃうるさくしてるぞ！<br>生粋のFPSゲーマーだけどゲーム全般なんでも大好き！<br>座右の銘は生きてりゃ大抵のことはなんとかなる",
+    desc2: "ゲーム配信",
     images: [
-      ""
+      "./img/members/13-しんやぞ01.png", 
+      "./img/members/13-しんやぞ02.png", 
+      "./img/members/13-しんやぞ03.png"
     ],
     x: "Zz_sinsin_Zz",
     youtube: "",
@@ -186,13 +192,15 @@ const membersData = [
   {
     id: 14,
     name: "saboint",
-    vrc: "saboint",
+    vrc: "saboint99",
     tag: ["メンバー"],
     color: "#ee8a2c",
-    desc1: "龍だぞ",
-    desc2: "",
+    desc1: "EGU内の最強ドラゴン。オス。小さい。足が遅い。力が弱い。火ふけない。翼がないから飛べない。角と尻尾がデカい。<br>好きなものはお酒。嫌いなものは柔軟剤。<br>ゲームが得意。人の名前を覚えるのが苦手。",
+    desc2: "ゲームしてるだけ",
     images: [
-      ""
+      "./img/members/14-さぼいんと01.png", 
+      "./img/members/14-さぼいんと02.png", 
+      "./img/members/14-さぼいんと03.png"
     ],
     x: "morrimorriGhh",
     youtube: "",
@@ -217,10 +225,12 @@ const membersData = [
     vrc: "とと（toto）",
     tag: ["メンバー"],
     color: "#ffb8f0",
-    desc1: "",
-    desc2: "",
+    desc1: "マイペースに日々を生きたいキプフェル<br>フレンドに会いに行ったことがきっかけで加入した<br><br>EGUに入ってゲームに触れた初心者枠！<br>センスは壊滅的だけど、いつか得意なゲームが見つかるはず<br>いつも納期に追われているのでEGU企画は単発やゲスト参加が多め <br><br>好きなものは動物とお酒<br>トレードマークは真っ赤ないちご！",
+    desc2: "歌みた、ゲーム、EGUあにまるず",
     images: [
-      ""
+      "./img/members/16-とと01.png", 
+      "./img/members/16-とと02.png", 
+      "./img/members/16-とと03.png"
     ],
     x: "Tototo_Tatin",
     youtube: "",
@@ -245,10 +255,12 @@ const membersData = [
     vrc: "komatsu_",
     tag: ["メンバー"],
     color: "#D9F2FF",
-    desc1: "",
-    desc2: "",
+    desc1: "EGUのゲラ担当こまつです。絵を描くのが好きでたまに個人チャンネルで配信もしています。VRCではチルワールドでのんびり作業しながら雑談するのが好き。オススメのチルワ随時募集中です。<br>ゲームはFPS、MMO、サバイバル系等なんでもやります。<br>イメージカラーは青。<br>ママではありません。",
+    desc2: "歌ってみた/ゲーム配信/シュチュエーションボイス",
     images: [
-      ""
+      "./img/members/18-こまつちま01.png", 
+      "./img/members/18-こまつちま02.png", 
+      "./img/members/18-こまつちま03.png"
     ],
     x: "komatsu_chiii",
     youtube: "komatsu-chiii",
@@ -259,8 +271,8 @@ const membersData = [
     vrc: "Tooka_",
     tag: ["メンバー"],
     color: "#4e1ff8",
-    desc1: "",
-    desc2: "",
+    desc1: "メカクレはいいぞ。<br>配信素材作りや動画編集の傍ら、たまーに配信活動に顔を出しています。<br>大喜利と謎解き、麻雀と日本酒が好き。<br>ゆるーく適当に生きていきたい。<br>イメージカラーは青紫。",
+    desc2: "裏方、歌ってみた、ゲーム配信",
     images: [
       "./img/members/19-Tooka01.png", 
       "./img/members/19-Tooka02.png", 
@@ -275,7 +287,7 @@ const membersData = [
     vrc: "rneguri",
     tag: ["メンバー"],
     color: "#d1d1d1",
-    desc1: "",
+    desc1: "EGUの幽霊部員<br>e-sports系とかSteaｍゲーをいつもやってます。<br>Vtuberとかアニメ大好き！",
     desc2: "",
     images: [
       ""
@@ -331,7 +343,7 @@ const membersData = [
     vrc: "すふれぇ",
     tag: ["メンバー"],
     color: "#cacaca",
-    desc1: "",
+    desc1: "EGUの輝く無言勢、クルル・スフレ！<br>持ち前の動きで繰り出す多彩な感情表現で、<br>コミュニティに彩りと華やかさを振りまくよー！<br><br>チャームポイントは銀と黒を基調とした髪と、深紅の瞳！<br><br>ゲームが昔から大好きで、触れてきたゲームの数はEGU内でも一番？かも！<br>コミュニティに彩りと華やかさを振りまくよー！<br>チャームポイントは銀と黒を基調とした髪と、深紅の瞳！<br><br></br>ゲームが昔から大好きで、触れてきたゲームの数はEGU内でも一番？かも！<br><br></br>皆に構って貰えることが大好き！<br></br>仲良くしてね！",
     desc2: "",
     images: [
       ""
