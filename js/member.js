@@ -40,9 +40,9 @@ const membersData = [
     desc1: "歌が好きな裏方・運営のお兄さん（？）<br><br>技術力とかはからっきしなので、コミュニティマネジメントや大会運営などを担当しつつ、<br><br>メンバーの皆がそれぞれの個性を出しながら輝ける場所を作ろうと日々奮闘している。<br><br>イメージカラーは紫色。<br><br>ゲストで呼ばれた配信では参加者として場をわちゃわちゃさせたり、<br>自チャンネルではたまに歌ってみた動画を上げたりする。<br><br>得意技は飲酒時に繰り出される俊敏な首の動き。",
     desc2: "裏方、運営<br>ゲーム配信<br>ゲストパーソナリティ",
     images: [
-      "./img/members/03-Sava-01.webp", 
-      "./img/members/03-Sava-02.webp", 
-      "./img/members/03-Sava-03.webp"
+      "./img/members/03-sava-01.webp", 
+      "./img/members/03-sava-02.webp", 
+      "./img/members/03-sava-03.webp"
     ],
     x: "Sava_403",
     youtube: "Sava_403",
@@ -100,9 +100,9 @@ const membersData = [
     desc1: "EGUの清楚ワンコ担当、エリリ・エリです。<br>VRChatでは主にキャスト業を行ったり、Nagisaに行ったり、動画制作をしたりしています。<br>EGUではゲーム配信時に画面担当などをしています。<br>無暗に褒めると胃痛で苦しみだすので要注意！<br>FPSをすると人を撃つ快感で悶え始めます。<br>同性の推しに対してはコミュ障が発動して隣に立てなくなります。<br>──実はEGU内のシチュボブーム火付け役（？）でもある…？",
     desc2: "歌ってみた/ゲーム配信/おしゃれ番長エリリ・エリ　コーデバトル",
     images: [
-      "./img/members/07-エリリ・エリ-01.webp", 
-      "./img/members/07-エリリ・エリ-02.webp", 
-      "./img/members/07-エリリ・エリ-03.webp"
+      "./img/members/07-エリリエリ-01.webp", 
+      "./img/members/07-エリリエリ-02.webp", 
+      "./img/members/07-エリリエリ-03.webp"
     ],
     x: "nameSnow66",
     youtube: "",
